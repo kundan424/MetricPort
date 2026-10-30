@@ -1,0 +1,30 @@
+server:
+  port: ${API_GATEWAY_PORT:8081}
+
+spring:
+  application:
+    name: api-gateway
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+  cloud:
+    gateway:
+      routes:
+        - id: control_plane_actuator
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/control-plane/actuator/**
+          filters:
+            - StripPrefix=3
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
