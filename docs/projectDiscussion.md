@@ -2898,7 +2898,7 @@ api-management-platform/           <-- Git repository root
 
 ```
 
-Here, the root `pom.xml` is a Maven aggregator with `pom` packaging. It is not an executable Spring Boot application.
+Here, the root `../pom.xml` is a Maven aggregator with `pom` packaging. It is not an executable Spring Boot application.
 
 Its responsibility is to coordinate the builds of its child projects and optionally manage shared dependency versions, Java version and plugin configurations.
 
@@ -2923,7 +2923,7 @@ Conceptually:
 
 ```
 
-Each application has its own `pom.xml` and can produce its own executable JAR and Docker image.
+Each application has its own `../pom.xml` and can produce its own executable JAR and Docker image.
 
 | Aspect                  | Control Plane           | API Gateway                               |
 | ----------------------- | ----------------------- | ----------------------------------------- |
@@ -2959,7 +2959,7 @@ api-management-control-plane/
 api-management-gateway/
 ```
 
-Each would have its own root `pom.xml`, Docker configuration and Git history.
+Each would have its own root `../pom.xml`, Docker configuration and Git history.
 
 However, I recommend a monorepo for this project because both applications are being developed together, share API contracts and need coordinated changes during the initial development.
 
